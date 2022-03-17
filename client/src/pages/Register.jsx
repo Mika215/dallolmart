@@ -2,7 +2,7 @@ import {React, useState} from "react";
 // import {useEffect} from "react"; //!uncomment this line
 import styled from "styled-components";
 import {Link, useHistory} from "react-router-dom";
-// const axios = require("axios");//!THIS SHOULD BE UNCOMMENTED once the email system is fixed
+const axios = require("axios");//!THIS SHOULD BE UNCOMMENTED once the email system is fixed
 
 const Container = styled.div`
   background-color: white;
@@ -126,39 +126,39 @@ const Register = () => {
 
   // useEffect(()=>{
 
-    // const handleRegistartion = async (e) => {
-    //   e.preventDefault();
+    const handleRegistartion = async (e) => {
+      e.preventDefault();
   
-    //   if (password !== confirmedPassword) {
-    //     alert("Password confirmation failed!\nPlease enter matching passwords !");
-    //     return;
-    //   } else {
-    //     const newUser = {
-    //       username: username,
-    //       password: confirmedPassword,
-    //       firstName: firstName,
-    //       lastName: lastName,
-    //       email: email,
-    //     };
-    //     const res = await axios.post(
-    //       "http://localhost:5000/users/register",
-    //       newUser
-    //     );
-    //     console.log(res.data.firstName + res.data.lastName);
+      if (password !== confirmedPassword) {
+        alert("Password confirmation failed!\nPlease enter matching passwords !");
+        return;
+      } else {
+        const newUser = {
+          username: username,
+          password: confirmedPassword,
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+        };
+        const res = await axios.post(
+          "http://localhost:5000/users/register",
+          newUser
+        );
+        console.log(res.data.firstName + res.data.lastName);
   
-    //     if (res.status === 200) {
-    //       history.push("/register/activationemailsent");
-    //     }
+        if (res.status === 200) {
+          history.push("/register/activationemailsent");
+        }
   
-    //     console.log(newUser.firstName + " " + newUser.lastName);
-    //   }
-    //   setUsername("");
-    //   setPassword("");
-    //   setConfirmedPassword("");
-    //   setFirstName("");
-    //   setLastName("");
-    //   setEmail("");
-    // };
+        console.log(newUser.firstName + " " + newUser.lastName);
+      }
+      setUsername("");
+      setPassword("");
+      setConfirmedPassword("");
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+    };
   
 
     
@@ -184,7 +184,7 @@ const Register = () => {
         </TopWrraper>
         <Form 
         
-        // onSubmit={handleRegistartion}
+        onSubmit={handleRegistartion}
         
         >
           <Input
