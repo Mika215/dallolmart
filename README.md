@@ -22,4 +22,4 @@ In order to realize such an elegant project the following thecnologies have been
 **MongoDB**\
 **Mongoose**\
 **Firebase**\
-**Nodemailer & Googleapis**\
+**Nodemailer & Googleapis**
