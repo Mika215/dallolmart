@@ -10,8 +10,10 @@ const {
 
 const sendMail = require("../dallolEmail");
 
-//signup email verification
-router.post("/change back  this to register signup", async (req, res) => {
+//signup email verification -first step
+//TODO: once the gmail api or send greed start to work this should be connected to the sign up form
+//!the /register route can only be used to create users by the admin in the dash board
+router.post("/byemail", async (req, res) => {
   const {firstName, lastName, username, email, password} = req.body;
   User.findOne({email}).exec((err, user) => {
     if (user) {
@@ -52,68 +54,7 @@ router.post("/change back  this to register signup", async (req, res) => {
   });
 });
 
-//!tempo registration or for the admin only can create user using this route
-
-router.post("/register", async (req, res) => {
-  const {
-    firstName,
-    lastName,
-    username,
-    email,
-    password,
-    phone,
-    dateOfBirth,
-    gender,
-    company,
-    street,
-    postalCode,
-    city,
-    country,
-    postalService,
-    image
-  } = req.body;
-  User.findOne({email}).exec((err, user) => {
-    if (user) {
-      console.log(err);
-      return res.status(400).send({
-        err: "User with this email already exists.Signup using other email account",
-      });
-    }
-  });
-
-  // const {firstName, lastName, username, email, password} = decodedToken;
-  //!hash pasword
-  //TODO: passward should be compared and if it turns to be matching then procced check the registration route password is not hashed
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
-
-  //!create a new user with Mongoose model
-  const newUser = new User({
-    firstName: firstName,
-    lastName: lastName,
-    username: username,
-    email: email,
-    password: hashedPassword,
-    phone: phone,
-    dateOfBirth: dateOfBirth,
-    gender: gender,
-    company: company,
-    street: street,
-    postalCode: postalCode,
-    city: city,
-    country: country,
-    postalService: postalService,
-    image:image
-  });
-
-  const savedUser = await newUser.save();
-  res
-    .status(200)
-    .send(`new user saved sucsessfully! => : ${savedUser.firstName}`);
-  console.log(savedUser);
-});
-
-//account activation
+//account activation - second step
 router.post("/activation", async (req, res) => {
   const activationHeader = req.headers.token;
 
@@ -163,37 +104,66 @@ router.post("/activation", async (req, res) => {
   }
 });
 
-//register new user
-// ! generator console.log(require('crypto').randomBytes(64).toString('hex'))
-// router.post("/register", async (req, res) => {
-//   const{name,email,password}=req.body;
-//   User.findOne({email}).exec((err,user)=>{
-//     if(user){
-//       console.log(err)
-//       return res.status(400).send({err:"User with this email already exists.Signup using other email account"})
+//!tempo registration or for the admin only can create user using this route
 
-//     }
-//   })
-//   try {
-//     const salt = await bcrypt.genSalt(10);
-//     const hashedPassword = await bcrypt.hash(req.body.password, salt);
-//     const newUser = new User({
-//       username: req.body.username,
-//       password: hashedPassword,
-//       email: req.body.email,
-//       firstName: req.body.firstName,
-//       lastName: req.body.lastName,
-//     });
-//     const savedUser = await newUser.save();
-//     res
-//       .status(200)
-//       .send(`new user saved sucsessfully! => : ${savedUser.firstName}`);
-//     console.log(savedUser);
-//   } catch (err) {
-//     res.status(500).send(err);
-//     console.log(err);
-//   }
-// });
+router.post("/register", async (req, res) => {
+  const {
+    firstName,
+    lastName,
+    username,
+    email,
+    password,
+    phone,
+    dateOfBirth,
+    gender,
+    company,
+    street,
+    postalCode,
+    city,
+    country,
+    postalService,
+    image,
+  } = req.body;
+  User.findOne({email}).exec((err, user) => {
+    if (user) {
+      console.log(err);
+      return res.status(400).send({
+        err: "User with this email already exists.Signup using other email account",
+      });
+    }
+  });
+
+  // const {firstName, lastName, username, email, password} = decodedToken;
+  //!hash pasword
+  //TODO: passward should be compared and if it turns to be matching then procced check the registration route password is not hashed
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  //!create a new user with Mongoose model
+  const newUser = new User({
+    firstName: firstName,
+    lastName: lastName,
+    username: username,
+    email: email,
+    password: hashedPassword,
+    phone: phone,
+    dateOfBirth: dateOfBirth,
+    gender: gender,
+    company: company,
+    street: street,
+    postalCode: postalCode,
+    city: city,
+    country: country,
+    postalService: postalService,
+    image: image,
+  });
+
+  const savedUser = await newUser.save();
+  res
+    .status(200)
+    .send(`new user saved sucsessfully! => : ${savedUser.firstName}`);
+  console.log(savedUser);
+});
 
 //login
 router.post("/login", async (req, res) => {

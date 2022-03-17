@@ -177,7 +177,7 @@ const Cart = () => {
   const initialPrice = defaultProduct.price;
   const [totalPrice, setTotalPrice] = useState(initialPrice);
   const [quantity, setQuantity] = useState(1);
-  const [isLogedIn, setIsLogedIn] = useState(false);
+  // const [isLogedIn, setIsLogedIn] = useState(false);
   const [stripeToken, setStripeToken] = useState(null);
 
   const user = useSelector((state) => state.user.currentUser);
@@ -203,10 +203,10 @@ const Cart = () => {
     }
     return;
   };
-  if (isLogedIn) {
-    //!this woll be printed out if the user is logedin it prevents from printing out the default value which is False.
-    console.log("User is logedin:" + isLogedIn);
-  }
+  // if (isLogedIn) {
+  //   //!this woll be printed out if the user is logedin it prevents from printing out the default value which is False.
+  //   console.log("User is logedin:" + isLogedIn);
+  // }
 
   const add = () => {
     setQuantity(quantity + 1);

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {DataGrid} from "@material-ui/data-grid";
 import {authRequest} from "../requestMethods";
 import {Link} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {deleteUser} from "../redux/serverConnect";
 
 const Container = styled.div`

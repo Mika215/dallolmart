@@ -1,7 +1,8 @@
-import {React, useState,useEffect} from "react";
+import {React, useState} from "react";
+// import {useEffect} from "react"; //!uncomment this line
 import styled from "styled-components";
 import {Link, useHistory} from "react-router-dom";
-const axios = require("axios");
+// const axios = require("axios");//!THIS SHOULD BE UNCOMMENTED once the email system is fixed
 
 const Container = styled.div`
   background-color: white;

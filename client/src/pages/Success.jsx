@@ -1,7 +1,7 @@
 import {React,useEffect} from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import {useSelector} from "react-redux";
+// import {useSelector} from "react-redux";
 
 const Container = styled.div`
   display: flex;
@@ -19,9 +19,10 @@ const Image = styled.img`
 `;
 const Success = () => {
   const location=useLocation()
-  const user = useSelector((state) => state.user.currentUser);
+  // const user = useSelector((state) => state.user.currentUser);
   console.log(location.state.data)
   //! should find a way so that i can send email to the customer including order id and amount of money
+  //TODO:this is not functional yet the sendEmail function should be imported from dalloEmail file.
   const summaryEmail = async () => {
     try {
       let message = `Dear ${location.state.data.source.name},

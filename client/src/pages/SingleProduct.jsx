@@ -354,6 +354,7 @@ const SingleProduct = () => {
               categories: !categories
                 ? targetProduct.categories && targetProduct.categories
                 : categories,
+              size: !size ? targetProduct.size && targetProduct.size : size,
             };
 
             updateProduct(targetId, productData, dispatch);
@@ -523,7 +524,7 @@ const SingleProduct = () => {
                           (s) => "   " + s + ", "
                         )}
                       >
-                        Size
+                        {size}
                       </Select>
                     </InputWrraper>
                     <Button

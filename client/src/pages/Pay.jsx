@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import {useLocation, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 
 import styled from "styled-components";

@@ -1,7 +1,7 @@
 import {React, useState} from "react";
 
 import styled from "styled-components";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 
 import {addProduct} from "../redux/serverConnect";
 import {

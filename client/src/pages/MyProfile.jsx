@@ -1,9 +1,7 @@
-import {React, useState, useEffect} from "react";
+import {React, useState} from "react";
 import {useSelector} from "react-redux";
 import {authRequest} from "../requestMethods";
 import {format} from "timeago.js";
-
-
 
 import {CameraAlt} from "@material-ui/icons";
 import styled from "styled-components";
@@ -225,7 +223,6 @@ const RightDelivery = styled.div`
 const MyProfile = () => {
   const user = useSelector((state) => state.user.currentUser);
 
-
   const [onEdit, setOnEdit] = useState(false);
   const [onPasswordEdit, setOnPasswordEdit] = useState(false);
   const [oldPassword, setOldPassword] = useState("");
@@ -245,8 +242,7 @@ const MyProfile = () => {
   const [country, setCountry] = useState("");
   const [postalService, setPostalService] = useState("");
 
-
-//TODO:fetching an updated version of the user every time there is an updated
+  //TODO:fetching an updated version of the user every time there is an updated
 
   //profile editing
   const handleEdit = (e) => {
@@ -287,7 +283,7 @@ const MyProfile = () => {
       console.log(err);
     }
   };
-  //  {user&& console.log(user._id);}
+
   //password handling
   const handlePasswordEdit = (e) => {
     setOnPasswordEdit(!onPasswordEdit);
